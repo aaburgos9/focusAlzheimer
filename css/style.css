@@ -911,65 +911,69 @@ ul {
      ;
 }
 
-.info_items {
-     width: 80%;
+
+.info_section {
+     background-color: #042431;
+     padding: 40px 20px;
+ }
+ .info_items {
+     max-width: 1200px;
      margin: 0 auto;
      display: flex;
-     justify-content: space-between;
+     flex-wrap: wrap;
+     justify-content: center;
+     gap: 20px;
+ }
+ .item {
+     flex: 1 1 200px;
+     max-width: 300px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+     padding: 20px;
+     border-radius: 10px;
+     transition: transform 0.3s ease;
+ }
+ .item:hover {
+     transform: translateY(-5px);
+ }
+ .img-box {
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: 60%;
+     margin-bottom: 15px;
+     background-color: rgba(255, 255, 255, 0.2);
+ }
+ .detail-box {
+     color: #fff;
+ }
+ .detail-box p {
+     font-size: 14px;
+     line-height: 1.5;
+ }
+ .box-1 { background-image: url(../images/location-white.png); }
+ .box-2 { background-image: url(../images/telephone-white.png); }
+ .box-3 { background-image: url(../images/envelope-white.png); }
+ .box-4 { background-image: url(../images/instagram.png); }
+ .box-5 { background-image: url(../images/facebook.png); }
 
-     .item {
-          width: 300px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
+ .copyright {
+     background-color: #031922;
+     color: #fff;
+     text-align: center;
+     padding: 15px;
+     font-size: 14px;
+ }
 
-          .img-box {
-               width: 80px;
-               height: 80px;
-               border-radius: 100%;
-               background-repeat: no-repeat;
-               background-position: center;
-          }
 
-          .detail-box {
-               margin-top: 5px;
-               color: #fff;
-          }
-     }
-}
+/* basic article elements styling */
+/* Estilos para los artículos */
 
-.info_items {
-     position: relative;
-
-     a {
-          position: relative;
-     }
-
-     .item {
-          .img-box {
-               &.box-1 {
-                    background-image: url(../images/location-white.png);
-               }
-
-               &.box-2 {
-                    background-image: url(../images/telephone-white.png);
-               }
-
-               &.box-3 {
-                    background-image: url(../images/envelope-white.png);
-               }
-               &.box-4 {
-                    background-image: url(../images/instagram.png);
-               }
-               &.box-5 {
-                    background-image: url(../images/facebook.png);
-               }
-
-          }
-     }
-}
-
+/* Artículo general */
 article {
      --img-scale: 1.001;
      --title-color: black;
@@ -982,55 +986,55 @@ article {
      transform-origin: center;
      transition: all 0.4s ease-in-out;
      overflow: hidden;
-}
-
-article a::after {
+ }
+ 
+ article a::after {
      position: absolute;
      inset-block: 0;
      inset-inline: 0;
      cursor: pointer;
      content: "";
-}
-
-/* basic article elements styling */
-article h2 {
+ }
+ 
+ /* Elementos básicos del artículo */
+ article h2 {
      margin: 0 0 18px 0;
      font-family: "Bebas Neue", cursive;
      font-size: 1.9rem;
      letter-spacing: 0.06em;
      color: var(--title-color);
      transition: color 0.3s ease-out;
-}
-
-figure {
+ }
+ 
+ figure {
      margin: 0;
      padding: 0;
      overflow: hidden;
-}
-
-article img {
+ }
+ 
+ article img {
      max-width: 100%;
      transform-origin: center;
      transform: scale(var(--img-scale));
      transition: transform 0.4s ease-in-out;
-}
-
-.article-body {
+ }
+ 
+ .article-body {
      padding: 24px;
-}
-
-article a {
+ }
+ 
+ article a {
      display: inline-flex;
      align-items: center;
      text-decoration: none;
      color: #28666e;
-}
-
-article a:focus {
+ }
+ 
+ article a:focus {
      outline: 1px dotted #28666e;
-}
-
-article a .icon {
+ }
+ 
+ article a .icon {
      min-width: 24px;
      width: 24px;
      height: 24px;
@@ -1038,7 +1042,55 @@ article a .icon {
      transform: translateX(var(--link-icon-translate));
      opacity: var(--link-icon-opacity);
      transition: all 0.3s;
-}
+ }
+ 
+ /* Estilos al tener hover o foco */
+ article:has(:hover, :focus) {
+     --img-scale: 1.1;
+     --title-color: #28666e;
+     --link-icon-translate: 0;
+     --link-icon-opacity: 1;
+     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+ }
+ 
+ /* Diseño responsivo */
+ 
+ /* Estilos para pantallas medianas y pequeñas */
+ @media screen and (max-width: 960px) {
+     article {
+         container: card / inline-size;
+     }
+ 
+     .article-body p {
+         display: none;
+     }
+ }
+ 
+ /* Estilos para artículos con contenedores mayores de 380px */
+ @container card (min-width: 380px) {
+     .article-wrapper {
+         display: grid;
+         grid-template-columns: 100px 1fr;
+         gap: 16px;
+     }
+ 
+     .article-body {
+         padding-left: 0;
+     }
+ 
+     figure {
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+     }
+ 
+     figure img {
+         height: 100%;
+         aspect-ratio: 1;
+         object-fit: cover;
+     }
+ }
+ 
 
 /* using the has() relational pseudo selector to update our custom properties */
 article:has(:hover, :focus) {
